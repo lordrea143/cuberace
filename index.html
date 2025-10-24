@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuber Ace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: url('image/rubiks.jpg') no-repeat center center/cover;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .gradient-text {
+      font-size: 40px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #00ffff, #ffffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: cyan;
+    }
+
+    .section {
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .section h3 {
+      font-size: 28px;
+      margin: 15px 0;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .sponsors {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      margin-top: 100px;
+    }
+
+    .sponsors img {
+      width: 150px;
+      transition: transform 0.3s ease;
+    }
+
+    .sponsors img:hover {
+      transform: scale(1.1);
+    }
+
+    .sponsor-label {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    /* Forms (login/register) */
+    .form-container {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.7);
+      width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      border-radius: 15px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .form-container.active {
+      display: flex;
+    }
+
+    .form-container h1 {
+      margin-bottom: 25px;
+      background: linear-gradient(to right, #ccc, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .form-container input {
+      width: 80%;
+      padding: 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+    }
+
+    .form-container button {
+      padding: 15px 25px;
+      border-radius: 25px;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .form-container button:hover {
+      background-color: grey;
+      color: white;
+    }
+
+    .form-container p a {
+      color: cyan;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+
+    .form-container p a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="gradient-text">CUBER ACE</div>
+    <nav>
+      <a href="#" id="home-link">HOME</a>
+      <a href="#" id="about-link">ABOUT US</a>
+      <a href="#" id="contact-link">CONTACT</a>
+      <a href="#" id="login-link">LOGIN</a>
+    </nav>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home-section" class="section">
+    <h3>This is a free Rubik's learning website</h3>
+    <h3>Learn Free and be a PRO</h3>
+    <h3>Join NOW</h3>
+
+    <div class="sponsors">
+      <div>
+        <img src="image/gan.png" alt="GAN">
+        <div class="sponsor-label">GAN SPONSORED</div>
+      </div>
+      <div>
+        <img src="image/moyu.webp" alt="MoYu">
+        <div class="sponsor-label">MOYU SPONSORED</div>
+      </div>
+      <div>
+        <img src="image/qiyi.png" alt="QiYi">
+        <div class="sponsor-label">QIYI SPONSORED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login Form -->
+  <div id="login-section" class="form-container">
+    <h1>Login</h1>
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button>Submit</button>
+    <p>Don’t have an account? <a href="#" id="go-register">Register Here</a></p>
+  </div>
+
+  <!-- Register Form -->
+  <div id="register-section" class="form-container">
+    <h1>Register</h1>
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <input type="password" placeholder="Confirm Password" required />
+    <button>Submit</button>
+    <p>Already have an account? <a href="#" id="go-login">Login</a></p>
+  </div>
+
+  <footer>
+    © 2025 Cuber Ace | All Rights Reserved
+  </footer>
+
+  <script>
+    // Navigation logic
+    const homeSection = document.getElementById('home-section');
+    const loginSection = document.getElementById('login-section');
+    const registerSection = document.getElementById('register-section');
+
+    document.getElementById('home-link').addEventListener('click', () => showSection('home'));
+    document.getElementById('login-link').addEventListener('click', () => showSection('login'));
+    document.getElementById('go-register').addEventListener('click', () => showSection('register'));
+    document.getElementById('go-login').addEventListener('click', () => showSection('login'));
+
+    function showSection(section) {
+      homeSection.style.display = 'none';
+      loginSection.classList.remove('active');
+      registerSection.classList.remove('active');
+
+      if (section === 'home') homeSection.style.display = 'block';
+      else if (section === 'login') loginSection.classList.add('active');
+      else if (section === 'register') registerSection.classList.add('active');
+    }
+  </script>
+</body>
+</html>
